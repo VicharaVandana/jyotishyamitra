@@ -286,11 +286,11 @@ def generate_astrologicalData(birthdata):
 
   if(is_InputBirthdata_Validated == False):
     print("Error: Input birthdata is not validated successfully")
-    return("ERROR")
+    return("INPUT_ERROR")
   
   if(is_OutputPathSet == False):
     print("Error: No proper Output Path provided for saving file generated")
-    return("ERROR")
+    return("OUTPUTPATH_ERROR")
 
   reset_astrologicalData()
   #Compute Lagna(D1) Related astrological data
