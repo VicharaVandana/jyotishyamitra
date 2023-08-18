@@ -27,7 +27,7 @@ if(jsm.IsBirthdataValid()):
 
 
 ########### Set the output folder and name of file to save generated astrological data
-if("SUCCESS" == jsm.set_output(path="D:\OutFolder", filename="astroOutput")):
+if("SUCCESS" == jsm.set_output(path="C:\\Users\sbb925582\Downloads", filename="astroOutput")):
     print(f'The output is : {jsm.get_output()}')
 else:
     print("Given folder path doesnt exist")

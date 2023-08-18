@@ -236,7 +236,7 @@ The JSON file has below main sections:
 - **All 15 Divisional charts Data** (D2, D3, D4, D7, D9, D10, D12, D16, D20, D24, D27, D30, D40, D45, D45, D60)
 - **Various strengths of Planets and houses** (Balas) 
 - **Ashtakavarga** (Bhinna Ashtakavarga of 7 planets fron Sun to Saturn and Sarvashtakavarga)
-- **Dashas** (Currently contains Vimshottari dasha - Mahasasha, Antarshashas and paryantardashas along with current running dashas when this module is executed)
+- **Dashas** (Currently contains Vimshottari dasha - Mahasasha, Antarshashas and paryantardashas along with current running dashas when this module is executed This section and subsections are self explanatory and so pleae have a look.)
 - **User Details** (Miscellaneous details of the person)
 
 ---
@@ -254,9 +254,95 @@ This explains subsections of 16 divisions in ShodashaVarga (16 divisions given b
     - **Dx -> classifications -> (natural benefics/natural malefics)** : These are the natural benefic/malefic planet list in the divisional chart depending on its natural tendency. Sun, Mars, Saturn, Rahu and Ketu are always natural malefics. Jupiter and Venus are always natural benefics. Moon is benefic if its in shukla paksha and malefic if in krishna paksha. Mercury is normally a natural benefic but turns natural malefic if conjoint with a natural malefic.
     - **Dx -> classifications -> (kendra/trikona/trik/upachaya)** : These grouping are based on planets house placements. Parashara has grould certain houses and tagged with auspicious or inauspicious houses. For example trikona is houses 1,5 and 9. So planets in these houses will be categorised under trikona classification. Similarly kendra houses are 1,4,7 and 10. Trik houses are bas houses which are 6,8 and 12. And finally upachaya houses which are 3,6,10 and 11. 
     - **Dx -> classifications -> (dharma/artha/kama/moksha)** : In a astrological chart the 12 houses are divided into 4 kinds of trikon namely dharma(houses : 1,5,9), artha(houses : 2,6,10), kama(houses : 3,7,11) and moksha(houses : 4,8,12). The planets list in each of these trikonas are enumerated in these classifications. 
-- **Dy -> vargottamas** : This section is available for all divisional parts except for D1. A vargottama planet is one which is in same sign in the divisional chart as in D1 chart. A vargottama planet is equivalaent to exhalted planet in that divisional chart
+- **Dy -> vargottamas** : This section is available for all divisional parts except for D1. A vargottama planet is one which is in same sign in the divisional chart as in D1 chart. A vargottama planet is equivalaent to exhalted planet in that divisional chart.
+
+### Planetery and House Strength Data:
+This explains the subsections under sthe section **Balas**. This includes strengths of houses which is bhavabala and planetery strengths which includes vimshopakabala, Shadbala and ishta-kashta balas 
+- **Balas -> Vimshopaka** : This is planetery balas provided by parashara basedon their placements. Points out of 20 will be given to each of 9 planets with 20 being highest and 5 being lowest. Higher is the points, stronger and happier is the planet. These points are calculated based on if the planet is placed in own sign or friend sign or emnemy sign etc in multiple divisional charts. The weightage given for various divisional charts are also differs bsed on number of divisional charts considered. So 4 group of divisional charts are described by Parashara. Namely Shadvarga (6 Divisional charts), SaptaVarga (7 Divisional charts), DashaVarga (10 Divisional charts) and shodashavarga (16 Divisional charts). And in this output file all four groupwise calculations are made and vimshopaka bala of each of 9 planets are given under them. 
+- **Balas -> Shadbala** : This is a major planetery strength metric provided by parashara for 7 planets from Sun to Saturn. As the name suggests it is sum of 6 different kinds of strengths (Shad means six and bala means strength). The shadbala is calculated and provided in unit of virupas for all subsections except for **Rupas** where shadbala is converted in unit of Rupas for all planets. (1 rupa = 60 virupas). So there are  six subsections of the Shadbala each for  6 sub-balas and 2 subsections for total. one in unit of rupas and one in virupas as shown below:
+    - **Balas -> Shadbala -> Sthanabala** : This is the positional strength of planets. This further has sub categories as shown below:
+        - **Balas -> Shadbala -> Sthanabala -> Uchhabala** : This section computes exhaltation strength of planets in the chart in virupas
+        - **Balas -> Shadbala -> Sthanabala -> Saptavargajabala** : This section computes strength of planets in the chart in virupas based on its position in 7 divisional charts. 
+        - **Balas -> Shadbala -> Sthanabala -> Ojhayugmarashiamshabala** : A planet gains strength because it is in an even or uneven sign or navamsa. this strength is computed for all 7 planets and this section is updated. 
+        - **Balas -> Shadbala -> Sthanabala -> Kendradhibala** : The planetery strength based on placement in kendra or different houses is computed for all 7 planets and updated here.
+        - **Balas -> Shadbala -> Sthanabala -> Drekshanabala** : The drekshana bala is comnputed for all 7 planets based on its position in 1/3rd of the signs as described by parashara and updated here.
+        - **Balas -> Shadbala -> Sthanabala -> Total** : Total of Sthanabala for each of 7 planet is given here 
+    - **Balas -> Shadbala -> Digbala** : This is the directional strength of 7 planets which are computed and updated here. 
+    - **Balas -> Shadbala -> Kaalabala** : These are time based strengths for all 7 planets computed and updated. 
+        - **Balas -> Shadbala -> Kaalabala -> Natonnatabala**
+        - **Balas -> Shadbala -> Kaalabala -> Pakshabala**
+        - **Balas -> Shadbala -> Kaalabala -> Tribhagaabala**
+        - **Balas -> Shadbala -> Kaalabala -> Varsha-maasa-dina-horabala**
+        - **Balas -> Shadbala -> Kaalabala -> Yuddhabala**
+        - **Balas -> Shadbala -> Kaalabala -> Ayanabala**
+        - **Balas -> Shadbala -> Kaalabala -> Total**
+    - **Balas -> Shadbala -> Cheshtabala** : This is motional strength of planet which is computed for all 7 planets and updated here.
+    - **Balas -> Shadbala -> Naisargikabala** : This is Natural strength of planet which is computed for all 7 planets and updated here.
+    - **Balas -> Shadbala -> Drikbala** : This is Aspect based strength of planet which is computed for all 7 planets and updated here.
+    - **Balas -> Shadbala -> Total** : This is sum of all sub strength of planet in virupas which is computed for all 7 planets and updated here.
+    - **Balas -> Shadbala -> Rupas** : This is sum of all sub strength of planet but in rupas which is computed for all 7 planets and updated here.
+- **Balas -> Ishtabala/Kashtabala** : These are the planetery strengths derived from shadbala for all 7 planets. 60 virupas are divided between ishtabala and kashtabala. If ishtabala is more then planet does good or else it gives problems. These balas are updated for all 7 planets in its respective sections.
+- **Balas -> Bhavabala** : This is strength of houses. All 12 houses get different strengths in virupas which is sum of 3 sub strengths.Each subsection is array of 12 elements. first element is for first house and similarly last element is for 12th house. The subsections are given below: 
+    - **Balas -> Bhavabala -> BhavaAdhipathibala** : This is the shadbala of lord of the house. 
+    - **Balas -> Bhavabala -> BhavaDigbala** : This is the Directional strength of sign in the house
+    - **Balas -> Bhavabala -> BhavaDrishtibala** : This is the Aspectual strength of planets on the house
+    - **Balas -> Bhavabala -> Total** : This is the sum of all 3 sub balas of the house. 
+
+### user_details Data:
+This Section contains various panchanga details when the person was born. The sub sections are
+- **user_details -> name** : Name of the person
+- **user_details -> birthdetails** : The birth data given are stored here in below format
+    - **user_details -> birthdetails -> DOB** : Date of Birth details
+        - **user_details -> birthdetails -> DOB -> year** : birth year
+        - **user_details -> birthdetails -> DOB -> month** : birth month
+        - **user_details -> birthdetails -> DOB -> day** : birth day
+    - **user_details -> birthdetails -> TOB** : Time of Birth details
+        - **user_details -> birthdetails -> TOB -> hour** : birth hour in 24 hour format
+        - **user_details -> birthdetails -> TOB -> min** : birth minute part
+        - **user_details -> birthdetails -> TOB -> sec** : birth second part
+    - **user_details -> birthdetails -> POB** : Place of Birth details
+        - **user_details -> birthdetails -> POB -> name** : Name of birth place
+        - **user_details -> birthdetails -> POB -> lat** : lattitude of birth place
+        - **user_details -> birthdetails -> POB -> lon** : longitude of birth place
+        - **user_details -> birthdetails -> POB -> timezone** : GMT timezone of birth place
+    - **user_details -> birthdetails -> Gender** : Gender of the person : "male", "female", "other"
+    - **user_details -> birthdetails -> name** : name of the person 
+- **user_details -> maasa** : month of birth as per hindu calender
+- **user_details -> vaara** : weekday of birth as per hindu calender
+- **user_details -> tithi** : day of month of birth as per hindu calender
+- **user_details -> karana** : karana of birth as per hindu calender
+- **user_details -> nakshatra** : Moon was in which nakshatra when the person was born
+- **user_details -> yoga** : yoga of birth as per hindu calender
+- **user_details -> rashi** : what is the rashi(moon sign) of the person
+
+---
+---
+
+This can be used to develop indian astrology applications and softwares on top of this. 
+
+For this module to work you need **Python version 3+**
+
+Other modules needed for this to work is only pyswisseph: 
+`pip install pyswisseph==2.8.0.post1`
+
+Github repository for this module: https://github.com/VicharaVandana/jyotishyamitra.git 
 
 
+        
+        
+        
+
+    
+     
+    
+    
+    
+    
+        
+        
+        
+        
+        
 
 
 
