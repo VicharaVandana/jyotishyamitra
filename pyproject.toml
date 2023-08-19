@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jyotishyamitra"
+version = "1.1.0"
+authors = [
+  { name="Shyam Bhat", email="bhatshyam.modernastrologer@gmail.com" },
+]
+description = "This package takes the birth data as input and computes indian vedic astrological data in a json file"
+readme = "README.md"
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/VicharaVandana/jyotishyamitra.git"
+"Bug Tracker" = "https://github.com/VicharaVandana/jyotishyamitra/issues"

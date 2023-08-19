@@ -1,3 +1,17 @@
+Metadata-Version: 2.1
+Name: jyotishyamitra
+Version: 1.1.0
+Summary: This package takes the birth data as input and computes indian vedic astrological data in a json file
+Author-email: Shyam Bhat <bhatshyam.modernastrologer@gmail.com>
+Project-URL: Homepage, https://github.com/VicharaVandana/jyotishyamitra.git
+Project-URL: Bug Tracker, https://github.com/VicharaVandana/jyotishyamitra/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
 # Jyoti**shyam**itra is a tool for indian vedic astrology based software
 
 ## This tool takes the below mentioned birthdata and computes astrological data useful for a astrologer and astrology tool developer. You can use the data to further develop your own tool and anything else you want.
