@@ -279,7 +279,7 @@ def reset_astrologicalData():
     return("SUCCESS")
   return("FAILURE")
 
-def generate_astrologicalData(birthdata):
+def generate_astrologicalData(birthdata, returnval = "JSON_FILE_LOCATION"):
   global outputfilenamefull
   global is_InputBirthdata_Validated
   global is_OutputPathSet
@@ -288,7 +288,7 @@ def generate_astrologicalData(birthdata):
     print("Error: Input birthdata is not validated successfully")
     return("INPUT_ERROR")
   
-  if(is_OutputPathSet == False):
+  if((is_OutputPathSet == False) and (returnval == "JSON_FILE_LOCATION")):
     print("Error: No proper Output Path provided for saving file generated")
     return("OUTPUTPATH_ERROR")
 
@@ -325,10 +325,16 @@ def generate_astrologicalData(birthdata):
   #Compute Vimshottari dasha
   dashas.Vimshottari(data.charts["D1"], birthdata)
 
-  #Dump the astrological computed data in output json file
-  js.dump_astrodata_injson(outputfilenamefull)
+  if(returnval == "JSON_FILE_LOCATION"):
+    #Dump the astrological computed data in output json file
+    js.dump_astrodata_injson(outputfilenamefull)
+    return (outputfilenamefull)
+  elif (returnval == "ASTRODATA_DICTIONARY"):
+     return(data.charts.copy())
+  else:
+     return("Invalid parameter returnval")
 
-  return (outputfilenamefull)
+  
 
 
 if __name__ == "__main__":

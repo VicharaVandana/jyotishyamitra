@@ -143,14 +143,17 @@ if (status == "SUCCESS"):
 ## The APIs related to astrological data generation 
 ### The API to generate Astrological data from birthdata given and save it in output file in json format `generate_astrologicalData`
 
-This is the most important API of this module. This API takes valid birthdata which is returned by API `get_birthdata` after the input data is validated as input and computes the astrological data based on indian vedic astrology and siderial ayanamsha and nirayana method and stores all those computed astrological data in json format in the file created in the location set by API `set_output` 
+This is the most important API of this module. This API takes valid birthdata which is returned by API `get_birthdata` after the input data is validated as input and computes the astrological data based on indian vedic astrology and siderial ayanamsha and nirayana method and stores all those computed astrological data either in json format in the file created in the location set by API `set_output` or in a dictionary depending on the input parameter **returnval**. 
 
-This API takes 1 input parameter : 
-- birthdata: This is the dictionary of all the provided birth data which can be fetched by calling the API `get_birthdata`
+This API takes 2 input parameters : 
+- birthdata: This is the dictionary of all the provided birth data which can be fetched by calling the API `get_birthdata`. This is a *mandatory* input parameter for this API.
+- returnval: This is a *optional* parameter. This specifies in which format the Astrological data has to be provided by this API. 
+    -If the value is either not provided or mentioned as **"JSON_FILE_LOCATION"**, Then output will be put in a JSON file and the location of the file will be returned by this API. 
+    -If the value is given as **"ASTRODATA_DICTIONARY"**, Then output will be put in a dictionary format and that dictionary will be returned by this API
+    -If any other value is provided for this input parameter then it returns error saying **"Invalid parameter returnval"**
 
-**Return Value** : This API returns the **full name of json file** which contains computed astrological data along with its location as its output if the API is executed successfully.
 
-> **Note** : If input birth data is not provided properly and not validated successfully before calling this API then it returns **"INPUT_ERROR"** and doesnt compute any astrological data. Similarly if output path is not provided using API `set_output` before calling this API then it returns **"OUTPUTPATH_ERROR"** and doesnt compute any astrological data as well. 
+> **Note** : If input birth data is not provided properly and not validated successfully before calling this API then it returns **"INPUT_ERROR"** and doesnt compute any astrological data. Similarly if output path is not provided using API `set_output` before calling this API and in the API the return of JSON file expected, then it returns **"OUTPUTPATH_ERROR"** and doesnt compute any astrological data as well. 
 
 > Below listed astrological data are computed by this module
 > - User Details like name, rashi, nakshatra, vaara, tithi, karana, maasa etc along with birth details
@@ -167,7 +170,7 @@ This API takes 1 input parameter :
 ---
 ---
 
-# Order of API invocation to compute Astrological data of a person
+# Order of API invocation to compute Astrological data of a person in a JSON file
 
 Below Steps have to be followed in API invocation to get the Astrological data properly. 
 1. Clear the past input data residue by calling `clear_birthdata`
@@ -215,6 +218,52 @@ if("SUCCESS" == jsm.set_output(path="D:\OutFolder", filename="astroOutput")):
     print(f'The output is : {jsm.get_output()}')    #step 7: to get output file full name
 else:
     print("Given folder path doesnt exist")
+    
+
+```
+---
+# Order of API invocation to compute Astrological data of a person in a dictionary
+
+Below Steps have to be followed in API invocation to get the Astrological data properly. 
+1. Clear the past input data residue by calling `clear_birthdata`
+2. Provide input birth data by calling `input_birthdata` in a single shot or multiple steps. Make sure all the input birth data is provided.
+3. Validate the input data by calling `validate_birthdata`
+4. Check if birthdata is valid using API `IsBirthdataValid` and if yes then get the **birthdata** by calling `get_birthdata`. This return value of API `get_birthdata` is important and store this birthdata dictionary in a variable which will be passed as input variable in next steps to compute astrological data. 
+5. Invoke `generate_astrologicalData` with input parameter **birthdata** we had fetched in step 4, and **returnval** value **"ASTRODATA_DICTIONARY"** as input parameters to this api. The return value is the dictionary where the astrological data are computed and updated. 
+
+Hence the Astrological data is computed for given birth data in dictionary format using which yopu can process further as you wish. 
+
+### Below code snippet demonstrates the steps provided above :
+
+```python
+import jyotishyamitra as jsm
+
+#step 1 :clear past input data
+jsm.clear_birthdata()
+
+#Step 2: Providing input birth data - here multiple times the API input_birthdata are invoked but you can do it in single shot too.
+#providing Name and Gender
+inputdata = jsm.input_birthdata(name="Shyam Bhat", gender="male")
+
+#providing Date of birth details
+inputdata = jsm.input_birthdata(year="1991", month=jsm.October, day="8")
+
+#Providing Place of birth details
+inputdata = jsm.input_birthdata(place="Honavar", longitude="+74.4439", lattitude="+14.2798", timezone="+5.5")
+
+#Providing Time of birth details
+inputdata = jsm.input_birthdata(hour="14", min="47", sec="9")
+
+#Step 3: Validate Birthdata
+jsm.validate_birthdata()
+
+#Step 4: If Birthdata is valid then get birthdata
+if(jsm.IsBirthdataValid()):
+    birthdata = jsm.get_birthdata()
+
+
+#Step 5: Invoke the API generate_astrologicalData with retrunval desired to be dictionary and get astrological data in dictionary format.
+astrodata = jsm.generate_astrologicalData(birthdata, returnval = "ASTRODATA_DICTIONARY")    print(astrodata)
     
 
 ```
@@ -323,11 +372,13 @@ This can be used to develop indian astrology applications and softwares on top o
 For this module to work you need **Python version 3+**
 
 Other modules needed for this to work is only pyswisseph: 
-`pip install pyswisseph==2.8.0.post1`
+``` 
+pip install pyswisseph==2.8.0.post1
+```
 
 Github repository for this module: https://github.com/VicharaVandana/jyotishyamitra.git 
 
-
+For jyotishyamitra package : [Click Here](https://pypi.org/project/jyotishyamitra/)
         
         
         
