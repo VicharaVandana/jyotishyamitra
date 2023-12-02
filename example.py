@@ -18,6 +18,19 @@ inputdata = jsm.input_birthdata(place="Honavar", longitude="+74.4439", lattitude
 #Providing Time of birth details
 inputdata = jsm.input_birthdata(hour="14", min="47", sec="9")
 
+################ Providing input birth data ####################
+#providing Name and Gender
+inputdata = jsm.input_birthdata(name="Sample", gender="male")
+
+#providing Date of birth details
+inputdata = jsm.input_birthdata(year="1912", month=jsm.August, day="8")
+
+#Providing Place of birth details
+inputdata = jsm.input_birthdata(place="Bangalore", longitude="+77.5946", lattitude="+12.9716", timezone="+5.5")
+
+#Providing Time of birth details
+inputdata = jsm.input_birthdata(hour="19", min="52", sec="30")
+
 ################### Lets Validate Birthdata ######################
 jsm.validate_birthdata()
 

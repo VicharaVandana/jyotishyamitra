@@ -9,6 +9,7 @@ import support.dashas as dashas
 import support.mod_divisional as varga
 import support.mod_bala as bala
 import support.mod_ashtakavarga as ashtaka
+import support.mod_specialpoints as sp
 import os
 
 
@@ -324,6 +325,9 @@ def generate_astrologicalData(birthdata):
 
   #Compute Vimshottari dasha
   dashas.Vimshottari(data.charts["D1"], birthdata)
+
+  #Compute special points
+  sp.compute_sphuta(data.charts)
 
   #Dump the astrological computed data in output json file
   js.dump_astrodata_injson(outputfilenamefull)
