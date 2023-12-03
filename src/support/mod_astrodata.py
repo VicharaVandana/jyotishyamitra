@@ -712,6 +712,48 @@ charts = {"D1": D1,
                                                  }
                                     }
                     },
+        "special_points" : {
+          "sphuta" : {
+                        "type" : "", #Beeja for males and Kshetra for females
+                        "symbol" : "",
+                        "D1" : {
+                                  "sign" : "",
+                                  "pos"  : {"deg" : 0, "min" : 0, "sec" : 0, "dec_deg": 0.0}, #initioalized to zero
+                                  "signlord" : "",
+                                  "nakshatra" : "",
+                                  "pada" : 0,
+                                  "nak-ruler" : "",
+                                  "house-num" : 0
+                        },
+                        "D3" : {
+                                  "sign" : "",
+                                  "pos"  : {"deg" : 0, "min" : 0, "sec" : 0, "dec_deg": 0.0}, #initioalized to zero
+                                  "signlord" : "",
+                                  "nakshatra" : "",
+                                  "pada" : 0,
+                                  "nak-ruler" : "",
+                                  "house-num" : 0
+                        },
+                        "D7" : {
+                                  "sign" : "",
+                                  "pos"  : {"deg" : 0, "min" : 0, "sec" : 0, "dec_deg": 0.0}, #initioalized to zero
+                                  "signlord" : "",
+                                  "nakshatra" : "",
+                                  "pada" : 0,
+                                  "nak-ruler" : "",
+                                  "house-num" : 0
+                        },
+                        "D9" : {
+                                  "sign" : "",
+                                  "pos"  : {"deg" : 0, "min" : 0, "sec" : 0, "dec_deg": 0.0}, #initioalized to zero
+                                  "signlord" : "",
+                                  "nakshatra" : "",
+                                  "pada" : 0,
+                                  "nak-ruler" : "",
+                                  "house-num" : 0
+                        },                        
+                },
+        },
           "user_details" : {"name"  :"Shyam Bhat",
                             "birthdetails": {   "DOB"     : {   "year"     : 0,
                                                                 "month"    : 0,

@@ -17,4 +17,5 @@ src/support/mod_divisional.py
 src/support/mod_general.py
 src/support/mod_json.py
 src/support/mod_lagna.py
+src/support/mod_specialpoints.py
 src/support/panchanga.py

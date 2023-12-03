@@ -672,6 +672,6 @@ def list_intersection(lst1, lst2):
     return lst3
 
 if __name__ == "__main__":
-    print(signnum("Scorpio"))
+    print(signnum("Aries"))
     print(check_ifAllNumInSetA_in_SetB([1,4,4,10,7,1,1], [1,4,7,10]))
     #print(debilitationSign_of_planet)

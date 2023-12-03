@@ -9,6 +9,7 @@ import support.dashas as dashas
 import support.mod_divisional as varga
 import support.mod_bala as bala
 import support.mod_ashtakavarga as ashtaka
+import support.mod_specialpoints as sp
 import os
 
 
@@ -279,7 +280,7 @@ def reset_astrologicalData():
     return("SUCCESS")
   return("FAILURE")
 
-def generate_astrologicalData(birthdata, returnval = "JSON_FILE_LOCATION"):
+def generate_astrologicalData(birthdata):
   global outputfilenamefull
   global is_InputBirthdata_Validated
   global is_OutputPathSet
@@ -288,7 +289,7 @@ def generate_astrologicalData(birthdata, returnval = "JSON_FILE_LOCATION"):
     print("Error: Input birthdata is not validated successfully")
     return("INPUT_ERROR")
   
-  if((is_OutputPathSet == False) and (returnval == "JSON_FILE_LOCATION")):
+  if(is_OutputPathSet == False):
     print("Error: No proper Output Path provided for saving file generated")
     return("OUTPUTPATH_ERROR")
 
@@ -325,16 +326,13 @@ def generate_astrologicalData(birthdata, returnval = "JSON_FILE_LOCATION"):
   #Compute Vimshottari dasha
   dashas.Vimshottari(data.charts["D1"], birthdata)
 
-  if(returnval == "JSON_FILE_LOCATION"):
-    #Dump the astrological computed data in output json file
-    js.dump_astrodata_injson(outputfilenamefull)
-    return (outputfilenamefull)
-  elif (returnval == "ASTRODATA_DICTIONARY"):
-     return(data.charts.copy())
-  else:
-     return("Invalid parameter returnval")
+  #Compute special points
+  sp.compute_sphuta(data.charts)
 
-  
+  #Dump the astrological computed data in output json file
+  js.dump_astrodata_injson(outputfilenamefull)
+
+  return (outputfilenamefull)
 
 
 if __name__ == "__main__":
