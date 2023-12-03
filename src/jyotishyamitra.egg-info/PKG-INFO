@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: jyotishyamitra
-Version: 1.2.0
+Version: 1.3.0
 Summary: This package takes the birth data as input and computes indian vedic astrological data in a json file
 Author-email: Shyam Bhat <bhatshyam.modernastrologer@gmail.com>
 Project-URL: Homepage, https://github.com/VicharaVandana/jyotishyamitra.git
