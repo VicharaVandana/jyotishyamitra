@@ -1,6 +1,6 @@
-Metadata-Version: 2.1
+Metadata-Version: 2.4
 Name: jyotishyamitra
-Version: 1.3.0
+Version: 1.3.1
 Summary: This package takes the birth data as input and computes indian vedic astrological data in a json file
 Author-email: Shyam Bhat <bhatshyam.modernastrologer@gmail.com>
 Project-URL: Homepage, https://github.com/VicharaVandana/jyotishyamitra.git
@@ -11,6 +11,7 @@ Classifier: Operating System :: OS Independent
 Requires-Python: >=3.7
 Description-Content-Type: text/markdown
 License-File: LICENSE
+Dynamic: license-file
 
 # Jyoti**shyam**itra is a tool for indian vedic astrology based software
 
@@ -387,7 +388,8 @@ For this module to work you need **Python version 3+**
 
 Other modules needed for this to work is only pyswisseph: 
 ``` 
-pip install pyswisseph==2.8.0.post1
+#pip install pyswisseph==2.8.0.post1 #works with latest version as on date 7th December 2025
+pip install pyswisseph
 ```
 
 Github repository for this module: https://github.com/VicharaVandana/jyotishyamitra.git 
