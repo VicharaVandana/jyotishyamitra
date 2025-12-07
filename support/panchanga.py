@@ -92,7 +92,8 @@ def function(point):
     # Place Revati at 0°0'0"
     #fval = norm180(swe.fixstar_ut("Revati", point, flag = swe.FLG_SWIEPH | swe.FLG_SIDEREAL)[0])
     # Place Citra at 180°
-    fval = swe.fixstar_ut("Citra", point, flag = swe.FLG_SWIEPH | swe.FLG_SIDEREAL)[0] - (180)
+    #FIX fval = swe.fixstar_ut("Citra", point, flag = swe.FLG_SWIEPH | swe.FLG_SIDEREAL)[0] - (180)
+    fval = swe.fixstar_ut("Citra", point, swe.FLG_SWIEPH | swe.FLG_SIDEREAL)[0] - (180)
     # Place Pushya (delta Cancri) at 106°
     # fval = swe.fixstar_ut(",deCnc", point, flag = swe.FLG_SWIEPH | swe.FLG_SIDEREAL)[0] - (106)
     return fval
@@ -139,7 +140,8 @@ def local_time_to_jdut1(year, month, day, hour = 0, minutes = 0, seconds = 0, ti
   """Converts local time to JD(UT1)"""
   y, m, d, h, mnt, s = swe.utc_time_zone(year, month, day, hour, minutes, seconds, timezone)
   # BUG in pyswisseph: replace 0 by s
-  jd_et, jd_ut1 = swe.utc_to_jd(y, m, d, h, mnt, 0, flag = swe.GREG_CAL)
+  #FIX jd_et, jd_ut1 = swe.utc_to_jd(y, m, d, h, mnt, 0, flag = swe.GREG_CAL)
+  jd_et, jd_ut1 = swe.utc_to_jd(y, m, d, h, mnt, 0, swe.GREG_CAL)
   return jd_ut1
 
 def nakshatra_pada(longitude):
@@ -157,7 +159,8 @@ def nakshatra_pada(longitude):
 def sidereal_longitude(jd, planet):
   """Computes nirayana (sidereal) longitude of given planet on jd"""
   set_ayanamsa_mode()
-  longi, flags = swe.calc_ut(jd, planet, flag = swe.FLG_SWIEPH | swe.FLG_SIDEREAL)
+  #longi, flags = swe.calc_ut(jd, planet, flag = swe.FLG_SWIEPH | swe.FLG_SIDEREAL)
+  longi, flags = swe.calc_ut(jd, planet, swe.FLG_SWIEPH | swe.FLG_SIDEREAL)
   reset_ayanamsa_mode()
   return norm360(longi[0]) # degrees
 
@@ -167,7 +170,8 @@ lunar_longitude = lambda jd: sidereal_longitude(jd, swe.MOON)
 def sunrise(jd, place):
   """Sunrise when centre of disc is at horizon for given date and place"""
   lat, lon, tz = place
-  result = swe.rise_trans(jd - tz/24, swe.SUN, lon, lat, rsmi = _rise_flags + swe.CALC_RISE)
+  #FIX result = swe.rise_trans(jd - tz/24, swe.SUN, lon, lat, rsmi = _rise_flags + swe.CALC_RISE)
+  result = swe.rise_trans(jd - tz/24, swe.SUN, _rise_flags + swe.CALC_RISE, [lon, lat, 0.0])
   rise = result[1][0]  # julian-day number
   # Convert to local time
   return [rise + tz/24., to_dms((rise - jd) * 24 + tz)]
@@ -175,7 +179,8 @@ def sunrise(jd, place):
 def sunset(jd, place):
   """Sunset when centre of disc is at horizon for given date and place"""
   lat, lon, tz = place
-  result = swe.rise_trans(jd - tz/24, swe.SUN, lon, lat, rsmi = _rise_flags + swe.CALC_SET)
+  #FIX result = swe.rise_trans(jd - tz/24, swe.SUN, lon, lat, rsmi = _rise_flags + swe.CALC_SET)
+  result = swe.rise_trans(jd - tz/24, swe.SUN, _rise_flags + swe.CALC_SET, [lon, lat, 0.0])
   setting = result[1][0]  # julian-day number
   # Convert to local time
   return [setting + tz/24., to_dms((setting - jd) * 24 + tz)]
@@ -183,7 +188,8 @@ def sunset(jd, place):
 def moonrise(jd, place):
   """Moonrise when centre of disc is at horizon for given date and place"""
   lat, lon, tz = place
-  result = swe.rise_trans(jd - tz/24, swe.MOON, lon, lat, rsmi = _rise_flags + swe.CALC_RISE)
+  #FIX result = swe.rise_trans(jd - tz/24, swe.MOON, lon, lat, rsmi = _rise_flags + swe.CALC_RISE)
+  result = swe.rise_trans(jd - tz/24, swe.MOON, _rise_flags + swe.CALC_RISE, [lon, lat, 0.0])
   rise = result[1][0]  # julian-day number
   # Convert to local time
   return to_dms((rise - jd) * 24 + tz)
@@ -191,7 +197,8 @@ def moonrise(jd, place):
 def moonset(jd, place):
   """Moonset when centre of disc is at horizon for given date and place"""
   lat, lon, tz = place
-  result = swe.rise_trans(jd - tz/24, swe.MOON, lon, lat, rsmi = _rise_flags + swe.CALC_SET)
+  #FIX result = swe.rise_trans(jd - tz/24, swe.MOON, lon, lat, rsmi = _rise_flags + swe.CALC_SET)
+  result = swe.rise_trans(jd - tz/24, swe.MOON, _rise_flags + swe.CALC_SET, [lon, lat, 0.0])
   setting = result[1][0]  # julian-day number
   # Convert to local time
   return to_dms((setting - jd) * 24 + tz)
@@ -418,8 +425,8 @@ def day_duration(jd, place):
 def gauri_chogadiya(jd, place):
   lat, lon, tz = place
   tz = place.timezone
-  srise = swe.rise_trans(jd - tz/24, swe.SUN, lon, lat, rsmi = _rise_flags + swe.CALC_RISE)[1][0]
-  sset = swe.rise_trans(jd - tz/24, swe.SUN, lon, lat, rsmi = _rise_flags + swe.CALC_SET)[1][0]
+  srise = swe.rise_trans(jd - tz/24, swe.SUN, _rise_flags + swe.CALC_RISE, [lon, lat, 0.0])[1][0]
+  sset = swe.rise_trans(jd - tz/24, swe.SUN, _rise_flags + swe.CALC_SET, [lon, lat, 0.0])[1][0]
   day_dur = (sset - srise)
 
   end_times = []
@@ -437,8 +444,8 @@ def gauri_chogadiya(jd, place):
 def trikalam(jd, place, option='rahu'):
   lat, lon, tz = place
   tz = place.timezone
-  srise = swe.rise_trans(jd - tz/24, swe.SUN, lon, lat, rsmi = _rise_flags + swe.CALC_RISE)[1][0]
-  sset = swe.rise_trans(jd - tz/24, swe.SUN, lon, lat, rsmi = _rise_flags + swe.CALC_SET)[1][0]
+  srise = swe.rise_trans(jd - tz/24, swe.SUN, _rise_flags + swe.CALC_RISE, [lon, lat, 0.0])[1][0]
+  sset = swe.rise_trans(jd - tz/24, swe.SUN, _rise_flags + swe.CALC_SET, [lon, lat, 0.0])[1][0]
   day_dur = (sset - srise)
   weekday = vaara(jd)
 
@@ -464,12 +471,12 @@ def durmuhurtam(jd, place):
   tz = place.timezone
 
   # Night = today's sunset to tomorrow's sunrise
-  sset = swe.rise_trans(jd - tz/24, swe.SUN, lon, lat, rsmi = _rise_flags + swe.CALC_SET)[1][0]
+  sset = swe.rise_trans(jd - tz/24, swe.SUN, _rise_flags + swe.CALC_SET, [lon, lat, 0.0])[1][0]
   srise = swe.rise_trans((jd + 1) - tz/24, swe.SUN, lon, lat, rsmi = _rise_flags + swe.CALC_RISE)[1][0]
   night_dur = (srise - sset)
 
   # Day = today's sunrise to today's sunset
-  srise = swe.rise_trans(jd - tz/24, swe.SUN, lon, lat, rsmi = _rise_flags + swe.CALC_RISE)[1][0]
+  srise = swe.rise_trans(jd - tz/24, swe.SUN, _rise_flags + swe.CALC_RISE, [lon, lat, 0.0])[1][0]
   day_dur = (sset - srise)
 
   weekday = vaara(jd)
@@ -508,8 +515,8 @@ def abhijit_muhurta(jd, place):
   during the day_duration (~12 hours)"""
   lat, lon, tz = place
   tz = place.timezone
-  srise = swe.rise_trans(jd - tz/24, swe.SUN, lon, lat, rsmi = _rise_flags + swe.CALC_RISE)[1][0]
-  sset = swe.rise_trans(jd - tz/24, swe.SUN, lon, lat, rsmi = _rise_flags + swe.CALC_SET)[1][0]
+  srise = swe.rise_trans(jd - tz/24, swe.SUN, _rise_flags + swe.CALC_RISE, [lon, lat, 0.0])[1][0]
+  sset = swe.rise_trans(jd - tz/24, swe.SUN, _rise_flags + swe.CALC_SET, [lon, lat, 0.0])[1][0]
   day_dur = (sset - srise)
 
   start_time = srise + 7 / 15 * day_dur
@@ -550,7 +557,8 @@ def ascendant(jd, place):
   set_ayanamsa_mode() # needed for swe.houses_ex()
 
   # returns two arrays, cusps and ascmc, where ascmc[0] = Ascendant
-  nirayana_lagna = swe.houses_ex(jd_utc, lat, lon, flag = swe.FLG_SIDEREAL)[1][0]
+  #FIX nirayana_lagna = swe.houses_ex(jd_utc, lat, lon, flag = swe.FLG_SIDEREAL)[1][0]
+  nirayana_lagna = swe.houses_ex(jd_utc, lat, lon, b'P', swe.FLG_SIDEREAL)[1][0]
   # 12 zodiac signs span 360°, so each one takes 30°
   # 0 = Mesha, 1 = Vrishabha, ..., 11 = Meena
   constellation = int(nirayana_lagna / 30)

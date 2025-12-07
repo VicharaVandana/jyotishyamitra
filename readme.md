@@ -373,7 +373,8 @@ For this module to work you need **Python version 3+**
 
 Other modules needed for this to work is only pyswisseph: 
 ``` 
-pip install pyswisseph==2.8.0.post1
+#pip install pyswisseph==2.8.0.post1 #works with latest version as on date 7th December 2025
+pip install pyswisseph
 ```
 
 Github repository for this module: https://github.com/VicharaVandana/jyotishyamitra.git 
