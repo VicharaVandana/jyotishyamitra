@@ -119,14 +119,14 @@ def nakshatra_pada(longitude):
 def sidereal_longitude(jd, planet):
   """Computes nirayana (sidereal) longitude of given planet on jd"""
   set_ayanamsa_mode()
-  (longi,myflags) = swe.calc_ut(jd, planet, flag = swe.FLG_SWIEPH | swe.FLG_SIDEREAL)
+  (longi,myflags) = swe.calc_ut(jd, planet, swe.FLG_SWIEPH | swe.FLG_SIDEREAL)
   reset_ayanamsa_mode()
   return norm360(longi[0]) # degrees
 
 def Is_Retrograde(jd, planet):
   """Checks if given planet is in retrograde motion on jd"""
   set_ayanamsa_mode()
-  (longi,myflags) = swe.calc_ut(jd, planet, flag = swe.FLG_SWIEPH | swe.FLG_SPEED | swe.FLG_SIDEREAL)
+  (longi,myflags) = swe.calc_ut(jd, planet, swe.FLG_SWIEPH | swe.FLG_SPEED | swe.FLG_SIDEREAL)
   reset_ayanamsa_mode()
   return (longi[3] < 0) # if speed is negative then its in retro
 
@@ -141,7 +141,7 @@ def update_ascendant(jd, place):
   jd_utc = jd - (tz / 24.)
   set_ayanamsa_mode() # needed for swe.houses_ex()
   # returns two arrays, cusps and ascmc, where ascmc[0] = Ascendant
-  nirayana_lagna = swe.houses_ex(jd_utc, lat, lon, flag = swe.FLG_SIDEREAL)[1][0]
+  nirayana_lagna = swe.houses_ex(jd_utc, lat, lon, b'P', swe.FLG_SIDEREAL)[1][0]
   # 12 zodiac signs span 360°, so each one takes 30°
   # 0 = Mesha, 1 = Vrishabha, ..., 11 = Meena
   constellation = int(nirayana_lagna / 30)
